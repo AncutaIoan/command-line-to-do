@@ -1,10 +1,16 @@
 package main
 
 import (
+	"context"
+	"fmt"
+	"os"
 	"time"
+
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 func main() {
-	todos := todos{
+	// Sample todos
+	myTodos := todos{
 		{
 			title:     "Learn Go",
 			completed: false,
@@ -21,5 +27,17 @@ func main() {
 		},
 	}
 
-	todos.printManual()	
+	// Print the todos
+	myTodos.printManual()
+
+	// Connect to the database
+	connStr := "postgres://postgres:12345@localhost:5432/postgres"
+	dbpool, err := pgxpool.New(context.Background(), connStr)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+		os.Exit(1)
+	}
+	defer dbpool.Close()
+
+	fmt.Println("Successfully connected to the database!")
 }
