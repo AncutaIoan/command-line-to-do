@@ -21,5 +21,5 @@ func main() {
 		},
 	}
 
-	todos.printManual()
+	todos.printManual()	
 }
