@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"net/http"
 	"os"
 	"time"
 
@@ -38,6 +40,6 @@ func main() {
 		os.Exit(1)
 	}
 	defer dbpool.Close()
-
-	fmt.Println("Successfully connected to the database!")
+ 	fmt.Println("Successfully connected to the database!")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
