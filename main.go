@@ -41,5 +41,6 @@ func main() {
 	}
 	defer dbpool.Close()
  	fmt.Println("Successfully connected to the database!")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	//issue on server start
+log.Fatal(http.ListenAndServe(":8080", nil))
 }
